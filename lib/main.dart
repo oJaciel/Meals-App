@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
       title: 'DeliMeals',
       theme: AppTheme.appTheme,
       routes: {
-        AppRoutes.HOME: (ctx) => CategoriesScreen(), //Rota '/' equivale ao home do MaterialApp
+        AppRoutes.HOME: (ctx) =>
+            CategoriesScreen(), //Rota '/' equivale ao home do MaterialApp
         AppRoutes.CATEGORIES_MEALS: (ctx) => CategoriesMealsScreen(),
         AppRoutes.MEAL_DETAIL: (ctx) => MealDetailScreen(),
       },
