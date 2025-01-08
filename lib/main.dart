@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'screens/categories_screen.dart';
+import 'package:meals/screens/tabs_screen.dart';
 import 'themes/app_theme.dart';
 import '../screens/categories_meals_screen.dart';
 import 'screens/meal_detail_screen.dart';
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: AppTheme.appTheme,
       routes: {
         AppRoutes.HOME: (ctx) =>
-            CategoriesScreen(), //Rota '/' equivale ao home do MaterialApp
+            TabsScreen(), //Rota '/' equivale ao home do MaterialApp
         AppRoutes.CATEGORIES_MEALS: (ctx) => CategoriesMealsScreen(),
         AppRoutes.MEAL_DETAIL: (ctx) => MealDetailScreen(),
       },
