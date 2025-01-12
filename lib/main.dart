@@ -20,6 +20,8 @@ class _MyAppState extends State<MyApp> {
   Settings settings = Settings();
   List<Meal> _availableMeals = dummyMeals;
 
+  List<Meal> _favoriteMeals = [];
+
   void _filterMeals(Settings settings) {
     setState(() {
       //Primeiro atualiza as informações das configurações
@@ -39,6 +41,18 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  void _toggleFavorite(Meal meal) {
+    setState(() {
+      _favoriteMeals.contains(meal)
+          ? _favoriteMeals.remove(meal)
+          : _favoriteMeals.add(meal);
+    });
+  }
+
+  bool _isFavorite(Meal meal) {
+    return _favoriteMeals.contains(meal);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -46,12 +60,13 @@ class _MyAppState extends State<MyApp> {
       title: 'DeliMeals',
       theme: AppTheme.appTheme,
       routes: {
-        AppRoutes.HOME: (ctx) =>
-            TabsScreen(), //Rota '/' equivale ao home do MaterialApp
+        AppRoutes.HOME: (ctx) => TabsScreen(
+            _favoriteMeals), //Rota '/' equivale ao home do MaterialApp
         AppRoutes.CATEGORIES_MEALS: (ctx) =>
             CategoriesMealsScreen(_availableMeals),
-        AppRoutes.MEAL_DETAIL: (ctx) => MealDetailScreen(),
-        AppRoutes.SETTINGS: (ctx) => SettingsScreen(settings, _filterMeals), //Passando as configurações salvas para a tela das configurações
+        AppRoutes.MEAL_DETAIL: (ctx) => MealDetailScreen(_toggleFavorite, _isFavorite),
+        AppRoutes.SETTINGS: (ctx) => SettingsScreen(settings,
+            _filterMeals), //Passando as configurações salvas para a tela das configurações
       },
     );
   }
